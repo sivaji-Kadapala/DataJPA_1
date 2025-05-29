@@ -1,6 +1,7 @@
 package comy.crud.mock.service;
 
 import comy.crud.mock.models.Applicant;
+import comy.crud.mock.models.Resume;
 import comy.crud.mock.repository.ApplicantCrudRepository;
 import comy.crud.mock.repository.ApplicantJpaRepository;
 import comy.crud.mock.repository.ApplicantPagingAndSortingRepository;
@@ -29,7 +30,10 @@ public class ApplcantService {
         return applicantJpaRepository.findByStatus(status);
     }
     public Applicant saveApplicantCrud(Applicant applicant){
-
+        Resume re=applicant.getResume();
+        if (re != null) {
+re.setApplicant(applicant);
+        }
         return  applicantCrudRepository.save(applicant);
     }
     public Iterable<Applicant> getApplicantWithPagination(int page,int size){

@@ -1,9 +1,6 @@
 package comy.crud.mock.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Applicant {
@@ -55,4 +52,14 @@ public class Applicant {
     private String email;
     private String phone;
     private String status;
+
+    public Resume getResume() {
+        return resume;
+    }
+
+    public void setResume(Resume resume) {
+        this.resume = resume;
+    }
+    @OneToOne(mappedBy = "applicant",cascade = CascadeType.ALL)
+    private Resume resume;
 }
